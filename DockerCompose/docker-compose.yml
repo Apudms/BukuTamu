@@ -1,0 +1,34 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: demodb
+    environment:
+      MSSQL_SA_PASSWORD: "Pwd@321"
+      ACCEPT_EULA: "Y"
+      MSSSQL_PID: "Developer"
+    ports:
+      - "1455:1433"
+    volumes:
+      - mssql-data:/var/opt/mssql
+    networks:
+      - tamusmart
+
+  simpleinventory:
+    build: 
+      context: ../TamuSmart
+      dockerfile: Web/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - tamusmart
+
+  dbtool:
+    image: mcr.microsoft.com/mssql-tools
+    networks:
+      - tamusmart
+
+volumes:
+  mssql-data:
+
+networks:
+  tamusmart:
