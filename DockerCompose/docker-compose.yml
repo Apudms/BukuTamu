@@ -1,9 +1,9 @@
 services:
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: demodb
+    container_name: bukutamudb
     environment:
-      MSSQL_SA_PASSWORD: "Pwd@321"
+      MSSQL_SA_PASSWORD: "2024@pUdT0r14L5_"
       ACCEPT_EULA: "Y"
       MSSSQL_PID: "Developer"
     ports:
@@ -13,10 +13,10 @@ services:
     networks:
       - tamusmart
 
-  simpleinventory:
+  webapi:
     build: 
       context: ../TamuSmart
-      dockerfile: Web/Dockerfile
+      dockerfile: WebAPI/Dockerfile
     ports:
       - "8080:8080"
     networks:
